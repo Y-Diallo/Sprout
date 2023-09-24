@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-const SignInPage = () => {
+const SignIn = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
             <Text>Sign In page</Text>
@@ -7,4 +7,4 @@ const SignInPage = () => {
     );
   };
   
-  export default SignInPage;
+  export default SignIn;

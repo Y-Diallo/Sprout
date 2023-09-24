@@ -3,8 +3,8 @@ import { Text, View } from "react-native";
 import { NativeWindStyleSheet } from "nativewind";
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Landing from "./screens/Landing";
-import SignIn from "./screens/SignIn";
+import Landing from "./Landing";
+import SignIn from "./SignIn";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
