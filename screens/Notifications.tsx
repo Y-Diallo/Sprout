@@ -1,5 +1,5 @@
 import { View, Text, StatusBar } from 'react-native';
-const PlantFinder = () => {
+const Notifications = () => {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
         <Text>Landing Page</Text>
@@ -8,4 +8,4 @@ const PlantFinder = () => {
     );
   };
   
-  export default PlantFinder;
+  export default Notifications;
