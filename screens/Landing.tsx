@@ -1,7 +1,7 @@
 import { View, Text, StatusBar } from "react-native";
 import * as Location from "expo-location";
 import { useEffect, useState } from "react";
-
+import { fetchPolygonData } from "../backend/api";
 type LocationObjectCoords = {
   latitude: number;
   longitude: number;
@@ -9,7 +9,8 @@ type LocationObjectCoords = {
 
 const Landing = () => {
   const [location, setLocation] = useState<LocationObjectCoords | null>(null);
-
+  const [weatherData, setWeatherData] = useState(null);
+  const [soilData, setSoilData] = useState(null);
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -26,6 +27,18 @@ const Landing = () => {
           " Longitude: " +
           loc.coords.longitude
       );
+      
+        const ans = await fetchPolygonData(location?.latitude, location?.longitude);
+        console.log("Weather data:", ans.weather);
+        console.log("Soil data:", ans.soil);
+
+        try {
+          setWeatherData(ans.weather);
+          setSoilData(ans.soil);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+        
     })();
   }, []);
 
@@ -37,9 +50,19 @@ const Landing = () => {
           ? `Latitude: ${location.latitude}\nLongitude: ${location.longitude}`
           : "Fetching location..."}
       </Text>
+      <Text>
+        {weatherData
+          ? `Weather Data: ${weatherData.weather[0].main}`
+          : "Fetching weather data..."}
+      </Text>
+      <Text>
+        {soilData
+          ? `Soil Temperature: ${soilData.t0} °C`
+          : "Fetching soil temperature data..."}
+      </Text>
       <StatusBar hidden={true} />
     </View>
-  );
+  );  
 };
 
 export default Landing;
