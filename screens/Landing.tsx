@@ -1,7 +1,7 @@
 import { View, Text, StatusBar } from "react-native";
 import * as Location from "expo-location";
 import { useEffect, useState } from "react";
-import { fetchPolygonData } from "../backend/api";
+import { fetchPolygonData, handleRecommendations } from "../backend/api";
 type LocationObjectCoords = {
   latitude: number;
   longitude: number;
@@ -35,6 +35,13 @@ const Landing = () => {
         try {
           setWeatherData(ans.weather);
           setSoilData(ans.soil);
+          const combinedData = {
+            location: location,
+            weatherData: weatherData,
+            soilData: soilData,
+          };
+          const aiResult = await handleRecommendations(combinedData);
+          console.log(aiResult)
         } catch (error) {
           console.error("Error parsing JSON:", error);
         }
@@ -57,7 +64,7 @@ const Landing = () => {
       </Text>
       <Text>
         {soilData
-          ? `Soil Temperature: ${soilData.t0} °C`
+          ? `Soil Temperature: ${soilData.t0} °K`
           : "Fetching soil temperature data..."}
       </Text>
       <StatusBar hidden={true} />
