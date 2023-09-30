@@ -7,6 +7,7 @@ import Notifications from "./screens/Notifications";
 import Landing from "./screens/Landing";
 import PlantInformation from "./screens/PlantInformation";
 import YourGarden from "./screens/YourGarden";
+import Picture from "./screens/Picture";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -18,6 +19,7 @@ export type RootStackParamList = {
   PlantFinder: undefined;
   PlantInformation: { userId: string, inGarden: boolean };
   SignIn: undefined;
+  Picture: undefined;
   YourGarden: undefined;
 };
 
@@ -31,6 +33,13 @@ export default function App() {
           <Stack.Screen 
             name = "Landing"
             component={Landing}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen 
+            name = "Picture"
+            component={Picture}
             options={{
               headerShown: false
             }}

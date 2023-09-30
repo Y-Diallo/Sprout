@@ -6,7 +6,7 @@ import { fetchPolygonData, handleRecommendations } from "../backend/api";
 import Navbar from '../components/Navbar/Navbar';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
-type Props = NativeStackScreenProps<RootStackParamList, 'YourGarden'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'PlantFinder'>;
 
 type LocationObjectCoords = {
   latitude: number;
