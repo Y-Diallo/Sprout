@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    paddingTop: 20,
     textAlign: 'left', // Align header text to the left
   },
   headerSubtitle: {
