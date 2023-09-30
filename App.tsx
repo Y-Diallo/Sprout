@@ -4,6 +4,7 @@ import { NativeWindStyleSheet } from "nativewind";
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Landing from "./screens/Landing";
+import PlantFinder from "./screens/PlantFinder";
 import SignIn from "./screens/SignIn";
 
 NativeWindStyleSheet.setOutput({
@@ -17,8 +18,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LandingPage">
         <Stack.Screen 
-          name = "Landing"
-          component={Landing}
+          name = "PlantFinder"
+          component={PlantFinder}
           options={{
             headerShown: false
           }}
