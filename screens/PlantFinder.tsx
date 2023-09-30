@@ -4,8 +4,54 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { fetchPolygonData, handleRecommendations } from "../backend/api";
 
+type LocationObjectCoords = {
+  latitude: number;
+  longitude: number;
+};
 
 const PlantFinder = () => {
+  const [location, setLocation] = useState<LocationObjectCoords | null>(null);
+  const [weatherData, setWeatherData] = useState<any>(null);
+  const [soilData, setSoilData] = useState<any>(null);
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        return;
+      }
+
+      let loc = await Location.getCurrentPositionAsync({});
+      setLocation(loc.coords);
+      console.log(
+        "Latitude: " +
+          loc.coords.latitude +
+          " Longitude: " +
+          loc.coords.longitude
+      );
+
+        const ans = await fetchPolygonData(location?.latitude, location?.longitude);
+        console.log("Weather data:", ans.weather);
+        console.log("Soil data:", ans.soil);
+
+        try {
+          setWeatherData(ans.weather);
+          setSoilData(ans.soil);
+          const combinedData = {
+            location: location,
+            weatherData: weatherData,
+            soilData: soilData,
+          };
+          const aiResult = await handleRecommendations(combinedData);
+          console.log(aiResult)
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+
+    })();
+  }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -98,50 +144,5 @@ const styles = StyleSheet.create({
   },
 });
 
-type LocationObjectCoords = {
-  latitude: number;
-  longitude: number;
-};
-
-const [location, setLocation] = useState<LocationObjectCoords | null>(null);
-  const [weatherData, setWeatherData] = useState<any>(null);
-  const [soilData, setSoilData] = useState<any>(null);
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        console.log("Permission to access location was denied");
-        return;
-      }
-
-      let loc = await Location.getCurrentPositionAsync({});
-      setLocation(loc.coords);
-      console.log(
-        "Latitude: " +
-          loc.coords.latitude +
-          " Longitude: " +
-          loc.coords.longitude
-      );
-
-        const ans = await fetchPolygonData(location?.latitude, location?.longitude);
-        console.log("Weather data:", ans.weather);
-        console.log("Soil data:", ans.soil);
-
-        try {
-          setWeatherData(ans.weather);
-          setSoilData(ans.soil);
-          const combinedData = {
-            location: location,
-            weatherData: weatherData,
-            soilData: soilData,
-          };
-          const aiResult = await handleRecommendations(combinedData);
-          console.log(aiResult)
-        } catch (error) {
-          console.error("Error parsing JSON:", error);
-        }
-
-    })();
-  }, []);
 
 export default PlantFinder;
