@@ -16,14 +16,14 @@ const Navbar = ({navigation}: NavbarProps) => {
             </TouchableOpacity>
           </View>
           <View className='grow flex items-center'>
-            <View className='bg-green-600 w-full h-52 flex items-center rounded-t-[40%] pt-6'>
+            <View className='bg-green-600 w-full h-40 flex items-center rounded-t-[20%] pt-6'>
               <TouchableOpacity onPress={()=> navigation.navigate('Picture')}>
-                <Ionicons name="image-outline" size={100} color="#fff"/>
+                <Ionicons name="image-outline" size={80} color="#fff"/>
               </TouchableOpacity>
             </View>
           </View>
           <View className='grow bg-green-600 flex items-center h-32 mt-auto justify-center' >
-            <TouchableOpacity onPress={()=> navigation.navigate('Garden')}>
+            <TouchableOpacity onPress={()=> navigation.navigate('YourGarden')}>
               <Ionicons  name="earth-outline" size={60} color="#fff"/>
             </TouchableOpacity>
           </View>

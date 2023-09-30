@@ -6,6 +6,7 @@ const apiKeyGPT = ""
 
 const ai = new OpenAI({
   apiKey: apiKeyGPT,
+  dangerouslyAllowBrowser: true
 });
 
 // Fetch weather data based on latitude and longitude

@@ -1,25 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-
 import { NativeWindStyleSheet } from "nativewind";
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import Landing from "./screens/Landing";
+import PlantFinder from "./screens/PlantFinder";
 import SignIn from "./screens/SignIn";
-import Navbar from "./components/Navbar/Navbar";
+import Notifications from "./screens/Notifications";
+import Landing from "./screens/Landing";
+import PlantInformation from "./screens/PlantInformation";
+import YourGarden from "./screens/YourGarden";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Landing: undefined;
-  SignIn: undefined;
-  SignUp: undefined;
+  Notifications: undefined;
+  PlantFinder: undefined;
   PlantInformation: { userId: string, inGarden: boolean };
+  SignIn: undefined;
+  YourGarden: undefined;
 };
 
 export default function App() {
@@ -36,12 +36,44 @@ export default function App() {
               headerShown: false
             }}
           />
-
-          <Stack.Screen name="SignIn" component={SignIn}/>
+          <Stack.Screen 
+            name = "Notifications"
+            component={Notifications}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen 
+            name = "PlantFinder"
+            component={PlantFinder}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen 
+            name = "PlantInformation"
+            component={PlantInformation}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen 
+            name = "SignIn"
+            component={SignIn}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen 
+            name = "YourGarden"
+            component={YourGarden}
+            options={{
+              headerShown: false
+            }}
+          />
 
         </Stack.Navigator>
       </NavigationContainer>
-      <Navbar navigation={undefined}/>
     </>
   );
 }
