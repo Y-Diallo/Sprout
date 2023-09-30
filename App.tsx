@@ -1,11 +1,6 @@
 import { NativeWindStyleSheet } from "nativewind";
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-<<<<<<< HEAD
-import Landing from "./screens/Landing";
-=======
-
->>>>>>> b30cca05e7a0e0a4a00cc95c80bb09c77d8b5f32
 import PlantFinder from "./screens/PlantFinder";
 import SignIn from "./screens/SignIn";
 import Notifications from "./screens/Notifications";
@@ -30,20 +25,9 @@ export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
-<<<<<<< HEAD
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="LandingPage">
-        <Stack.Screen 
-          name = "PlantFinder"
-          component={PlantFinder}
-          options={{
-            headerShown: false
-          }}
-        />
-=======
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
+        <Stack.Navigator initialRouteName="PlantFinder">
           <Stack.Screen 
             name = "Landing"
             component={Landing}
@@ -86,7 +70,6 @@ export default function App() {
               headerShown: false
             }}
           />
->>>>>>> b30cca05e7a0e0a4a00cc95c80bb09c77d8b5f32
 
         </Stack.Navigator>
       </NavigationContainer>
